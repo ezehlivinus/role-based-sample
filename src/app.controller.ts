@@ -20,7 +20,7 @@ export class AppController {
     summary: 'Endpoint for reading error logs',
     description: 'This is accessible using supper admin'
   })
-  @Auth([Roles.SUPER_ADMIN])
+  @Auth([Roles.ADMIN])
   async getErrorLogs() {
     return await this.appService.getErrorLogs();
   }

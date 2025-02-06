@@ -57,7 +57,7 @@ export class AuthController {
       'This backend code should be commented after creating an super admin'
   })
   @ApiOkResponse({
-    description: 'Supper admin created is successful',
+    description: 'admin created is successful',
     type: CreateSupperAdminResponseDTO
   })
   @ApiBadRequestResponse({
@@ -65,9 +65,10 @@ export class AuthController {
     type: ErrorResponseDTO
   })
   async createSupperAdmin(@Body() createSupperAdminDto: CreateSupperAdminDto) {
+    return { data: 'This endpoint is disabled' };
     const newSupperAdmin = await this.authService.createSupperAdmin({
       ...createSupperAdminDto,
-      role: Roles.SUPER_ADMIN
+      role: Roles.ADMIN
     });
     return { data: newSupperAdmin };
   }

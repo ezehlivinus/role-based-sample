@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { FilterQuery } from 'mongoose';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { User, UserDocument } from './user.schema';
+import { Roles, User, UserDocument } from './user.schema';
 import { UsersRepository } from './users.repository';
 
 @Injectable()
@@ -30,6 +30,9 @@ export class UsersService {
   }
 
   async create(createUserDto: Partial<User>) {
+    if (createUserDto.role === Roles.ADMIN) {
+      throw new BadRequestException('Cannot create an admin user');
+    }
     await this.findOneOrFail({ email: createUserDto.email });
     return await this.usersRepository.create(createUserDto);
   }

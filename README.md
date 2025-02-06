@@ -1,7 +1,27 @@
-# your-app-name
+# Authentication & Role-Based Access Control (RBAC)
+- This was build out of my nestjs starter repository template. You can find the original repository [here](https://github.com/ezehlivinus/nest-starter). I updated it because of this repo, check the recent commits for the changes I made.
 
 ## Description
-This starter repository simplifies the process of starting a NestJS project. It provides configurations in addition to what you get when you run on your terminal '`$ nest new your-new-app-name`' to create a new nestjs project or app.
+- This is a simple authentication and role-based access control (RBAC) system built with NestJS, MongoDB, and Docker.
+- Before going through the setup this is how can test the application
+  - Create a user
+  - Login with the user
+  - Use the `accessToken` to access the other endpoints
+  - Depending on the role you used to create the user, you can access the endpoints that are restricted to that role
+
+- To test this app when running on the browser on swagger, you can use the following steps:
+ - create @ `/api/v1/users` a `POST` request with the following body
+ - login with the email and password you used to create the user @ `/api/v1/auth/login` a `POST` request with the following body
+ - copy `accessToken` from the response and use it as the `Bearer Token` in the swagger UI by
+    - clicking on the `Authorize` button on the top right corner of the swagger UI
+    - paste the `accessToken` in the `Value` field and click `Authorize` and then `Close`
+    - you can now test the other endpoints
+ - Tyr to access the following endpoints
+    - `/api/v1/users/only-admin` - only admin can access this endpoint
+    - `/api/v1/users/only-shipper` - only shipper can access this endpoint
+    - ...and the rest of the endpoints, that as padlock icon on the right side of the endpoint
+    - Depending on the role you used to create the user, you can access the endpoints that are restricted to that role
+
 
 ## Toolings
 - <a href="https://docs.docker.com/compose/" target="_blank">Docker</a> version 27.2.1, build 100c701

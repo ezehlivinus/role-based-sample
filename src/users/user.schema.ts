@@ -4,9 +4,9 @@ import { Model, Document, Types } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
 export enum Roles {
-  ADMIN = 'admin',
-  SUPER_ADMIN = 'super_admin',
-  User = 'user',
+  ADMIN = 'Admin',
+  SHIPPER = 'Shipper',
+  CARRIER = 'Carrier',
 }
 
 type UserStatics = {
@@ -41,7 +41,7 @@ export class User {
   @Prop()
   password: string;
 
-  @Prop({ type: String, enum: Roles, default: Roles.User })
+  @Prop({ type: String, enum: Roles, default: Roles.CARRIER })
   role: Roles;
 }
 

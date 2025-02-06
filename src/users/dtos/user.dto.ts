@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { CreateUserDto } from './create-user.dto';
 import { UpdateUserDto } from './update-user.dto';
+import { Roles } from '../user.schema';
 
 export class UserDto {
   @ApiProperty()
@@ -20,6 +21,12 @@ export class UserDto {
   @IsNotEmpty()
   @MinLength(5)
   password: string;
+
+  @ApiProperty({ enum: Roles, default: Roles.SHIPPER })
+  @IsEnum(Roles)
+  @IsNotEmpty()
+  role: Roles;
+
 }
 
 export class UserDtoWithoutPassword extends UserDto {
